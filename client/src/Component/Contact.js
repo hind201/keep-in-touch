@@ -21,7 +21,7 @@ function Contact(props) {
           e.preventDefault();
      const res= await  axios.post("http://localhost:3000/contact/user" , user)
      if(res)props.history.push ('/contact')
-        // .then(res => console.log(res.user));
+      
 
         
     }
