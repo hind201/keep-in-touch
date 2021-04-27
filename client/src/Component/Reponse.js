@@ -4,11 +4,11 @@ import axios from 'axios'
 
 function Reponse(props) {
   const {id} = useParams()
-  const [reponse,setMessage] = useState('')
+  const [message,setMessage] = useState('')
   const handleClick =async (e)=>{
     e.preventDefault();
     try {
-        const res = await axios.post(`http://localhost:3000/contact/email/${id}`,{reponse});
+        const res = await axios.post(`http://localhost:3000/contact/email/${id}`,{message});
         if(res) props.history.push('/contact')
       } catch (error) {
         if(error) console.log(error.response);
@@ -18,18 +18,18 @@ function Reponse(props) {
     // console.log(e.target.value);
     setMessage(e.target.value)
   }
-   const [contact,setClient]= useState([])
+   const [contact,setContact]= useState([])
 
-  const getClient =async ()=>{
+  const getContact =async ()=>{
    try {
       const {data} = await axios.post(`http://localhost:3000/contact/searsh/${id}`);
-    if(data) setClient(data)
+    if(data) setContact(data)
    } catch (error) {
      if(error) console.log(error.response);
    }
   }
   useEffect(()=>{
-    getClient()
+    getContact()
   },[])
   return(
      <div className="container">
